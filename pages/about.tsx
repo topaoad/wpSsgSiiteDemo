@@ -1,13 +1,15 @@
 import type { NextPage } from "next";
 import { ReactElement } from "react";
 
-const Home = () => {
+const About= (): JSX.Element => {
   return (
     <div>
+      <div>hello</div>
+      <div>hello</div>
       <div>hello</div>
       <div>hello</div>
     </div>
   );
 };
 
-export default Home;
+export default About;
