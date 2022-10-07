@@ -39,7 +39,7 @@ export const getStaticProps: GetStaticProps = async () => {
       }
     `
   });
-  // awaitをつけないとエラーとなります。
+  // awaitをつけないとエラーとなります。blocksにpromiseが返ってきます。
   const blocks = await cleanAndTransformBlocks(data.nodeByUri.blocksJSON);
   
   return {
