@@ -40,7 +40,7 @@ export const getStaticProps: GetStaticProps = async () => {
     `
   });
   // awaitをつけないとエラーとなります。blocksにpromiseが返ってきます。
-  const blocks = await cleanAndTransformBlocks(data.nodeByUri.blocksJSON);
+  const blocks= await cleanAndTransformBlocks(data.nodeByUri.blocksJSON);
   
   return {
     props: {

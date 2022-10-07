@@ -1,20 +1,17 @@
-// import { CallToActionButton } from "components/CallToActionButton";
-// import { Column } from "components/Column";
-// import { Columns } from "components/Columns";
-// import { Cover } from "components/Cover";
-// import { FormspreeForm } from "components/FormspreeForm";
-// import { Heading } from "components/Heading";
-// import { Paragraph } from "components/Paragraph";
-// import { PostTitle } from "components/PostTitle";
-// import { PropertyFeatures } from "components/PropertyFeatures";
-// import { PropertySearch } from "components/PropertySearch";
+// import { CallToActionButton } from "src/components/CallToActionButton";
+// import { Column } from "src/components/Column";
+// import { Columns } from "src/components/Columns";
+import { Cover } from "src/components/Cover";
+// import { FormspreeForm } from "src/components/FormspreeForm";
+import { Heading } from "src/components/Heading";
+// import { Paragraph } from "src/components/Paragraph";
+// import { PostTitle } from "src/components/PostTitle";
+// import { PropertyFeatures } from "src/components/PropertyFeatures";
+// import { PropertySearch } from "src/components/PropertySearch";
 import Image from "next/image";
 // import { theme } from "theme";
 
-
-
 export const BlockRenderer = ({ blocks }) => {
-
   return blocks.map((block) => {
     switch (block.name) {
       // case "acf/formspreeform": {
@@ -52,16 +49,16 @@ export const BlockRenderer = ({ blocks }) => {
       //     />
       //   );
       // }
-      // case "core/heading": {
-      //   return (
-      //     <Heading
-      //       key={block.id}
-      //       level={block.attributes.level}
-      //       content={block.attributes.content}
-      //       textAlign={block.attributes.textAlign}
-      //     />
-      //   );
-      // }
+      case "core/heading": {
+        return (
+          <Heading
+            key={block.id}
+            level={block.attributes.level}
+            content={block.attributes.content}
+            textAlign={block.attributes.textAlign}
+          />
+        );
+      }
       // case "core/post-title": {
       //   return (
       //     <PostTitle
@@ -74,14 +71,14 @@ export const BlockRenderer = ({ blocks }) => {
       // case "acf/propertysearch": {
       //   return <PropertySearch key={block.id} />;
       // }
-      // case "core/cover": {
-      //   console.log("COVER BLOCK: ", block);
-      //   return (
-      //     <Cover key={block.id} background={block.attributes.url}>
-      //       <BlockRenderer blocks={block.innerBlocks} />
-      //     </Cover>
-      //   );
-      // }
+      case "core/cover": {
+        console.log("COVER BLOCK: ", block);
+        return (
+          <Cover key={block.id} backgroundUrl={block.attributes.url}>
+            <BlockRenderer blocks={block.innerBlocks} />
+          </Cover>
+        );
+      }
       // case "core/columns": {
       //   return (
       //     <Columns
@@ -115,9 +112,7 @@ export const BlockRenderer = ({ blocks }) => {
         );
       }
       case "core/spacer": {
-        return (
-          <div  key={block.id}>スペーサーのテストだよ</div>
-        );
+        return <div key={block.id}>スペーサーのテストだよ</div>;
       }
       default: {
         console.log("UNKNOWN: ", block);
