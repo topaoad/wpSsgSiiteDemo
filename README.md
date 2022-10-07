@@ -1,7 +1,19 @@
-## Next.jsを利用したＷordＰress静的サイト制作
+## Next.jsを利用したWordPress静的サイト制作
+実際のブログサイトを用いていかに実用化するかを検証しながら構築する。
+全てtsまたはtsxで統一する。
+
+## つまづきポイント
+- GraphQLを稼働させるにはWPの言語設定は英語のままにする（日本語NG）
+- getStaticPropsをする際、async以下のコードは全てawaitをつける（つけないと取得順の不具合でエラー発生）
+- 取得したデータをJSON.parseしないとうまく活用できなかった。
+
+## 後程実施予定のタスク
+- Codegenを入れて、型の自動生成
+- eslintのルール化（これはやれたら）
+
+## 特記事項
+- 写経ではなく仕組みの理解と他の実装方法を検討しながら実装する。
+具体例
+-  Apolloではなく、graphql-requestライブラリのGraphQLClientを使ったデータフェッチ
 
 
-
-## Learn More
-## Learn More
-## Learn More
