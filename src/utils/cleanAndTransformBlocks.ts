@@ -29,8 +29,9 @@ export const cleanAndTransformBlocks = async (blocksJSON) => {
   // console.log("all pages: ", data);
 
   // JSON.parse・・・文字列を JSON として解析し、文字列によって記述されている JavaScript の値やオブジェクトを構築します。
-  const blocks = JSON.parse(blocksJSON);
+  const blocks =  JSON.parse(blocksJSON);
   console.log(blocks);
+  
   const deleteKeys = [
     "attributesType",
     "blockType",
@@ -76,7 +77,7 @@ export const cleanAndTransformBlocks = async (blocksJSON) => {
     });
   };
 
-  cleanBlocks(blocks);
+   cleanBlocks(blocks);
 
   return blocks;
 };

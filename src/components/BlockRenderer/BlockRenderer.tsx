@@ -4,15 +4,42 @@
 import { Cover } from "src/components/Cover";
 // import { FormspreeForm } from "src/components/FormspreeForm";
 import { Heading } from "src/components/Heading";
-// import { Paragraph } from "src/components/Paragraph";
+import { Paragraph } from "src/components/Paragraph";
 // import { PostTitle } from "src/components/PostTitle";
 // import { PropertyFeatures } from "src/components/PropertyFeatures";
 // import { PropertySearch } from "src/components/PropertySearch";
 import Image from "next/image";
-// import { theme } from "theme";
+import { theme } from "src/utils/theme";
 
-export const BlockRenderer = ({ blocks }) => {
-  return blocks.map((block) => {
+type ArrayBlockRendererProps = {
+  blocks: BlockRendererProps[];
+};
+
+type BlockRendererProps = {
+  name: string;
+  id: string;
+  attributes: {
+    textAlign: string;
+    textColor: string;
+    align: string;
+    content: string;
+    level: number;
+    url: string;
+    originalHeight: number;
+    originalWidth: number;
+    alt: string;
+    style: {
+      textColor: {
+        text: string;
+      };
+    };
+  };
+
+  innerBlocks: any;
+};
+
+export const BlockRenderer = ({ blocks }: any) => {
+  return blocks.map((block: BlockRendererProps) => {
     switch (block.name) {
       // case "acf/formspreeform": {
       //   return (
@@ -36,19 +63,21 @@ export const BlockRenderer = ({ blocks }) => {
       //     />
       //   );
       // }
-      // case "core/paragraph": {
-      //   return (
-      //     <Paragraph
-      //       key={block.id}
-      //       textAlign={block.attributes.align}
-      //       content={block.attributes.content}
-      //       textColor={
-      //         theme[block.attributes.textColor] ||
-      //         block.attributes.style?.color?.text
-      //       }
-      //     />
-      //   );
-      // }
+      case "core/paragraph": {
+        return (
+          <Paragraph
+            key={block.id}
+            textAlign={block.attributes.align}
+            content={block.attributes.content}
+            textColor={
+              // 参照コードを書き換えて関数化
+              // theme[block.attributes.textColor] ||
+              theme(block.attributes.textColor) ||
+              block.attributes.style?.textColor.text
+            }
+          />
+        );
+      }
       case "core/heading": {
         return (
           <Heading

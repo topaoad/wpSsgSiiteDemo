@@ -28,7 +28,7 @@ export default Home;
 export const getStaticProps: GetStaticProps = async () => {
   const { data } = await client.query({
     query: gql`
-      query NewQuery {
+      query PageQuery {
         nodeByUri(uri: "/") {
           ... on Page {
             id
@@ -39,9 +39,10 @@ export const getStaticProps: GetStaticProps = async () => {
       }
     `
   });
+
   // awaitをつけないとエラーとなります。blocksにpromiseが返ってきます。
   const blocks= await cleanAndTransformBlocks(data.nodeByUri.blocksJSON);
-  
+
   return {
     props: {
       data: data,
