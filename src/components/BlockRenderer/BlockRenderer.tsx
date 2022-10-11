@@ -12,7 +12,7 @@ import Image from "next/image";
 import { theme } from "src/utils/theme";
 
 type ArrayBlockRendererProps = {
-  blocks: BlockRendererProps[];
+  blocks: [];
 };
 
 type BlockRendererProps = {
