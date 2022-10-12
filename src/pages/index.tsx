@@ -6,23 +6,34 @@ import client from "src/lib/apollo/client";
 import { AnyAaaaRecord } from "dns";
 import { BlockRenderer } from "src/components/BlockRenderer";
 import { cleanAndTransformBlocks } from "src/utils/cleanAndTransformBlocks";
+import { getPageStaticProps } from "src/utils/getPageStaticProps";
 
 export type Data = {
-  data: any;
-  blocks: any;
-  mainMenuItems: any;
+  data: object;
+  blocks: [];
+  mainMenuItems: [];
+  callToActionLabel: string;
+  callToActionDestination: string;
 };
 
-const Home: NextPage<Data> = ({ data, blocks, mainMenuItems }: Data) => {
+const Home: NextPage<Data> = ({
+  data,
+  blocks,
+  mainMenuItems,
+  callToActionLabel,
+  callToActionDestination,
+}: Data) => {
   console.log(data);
   console.log(blocks);
   console.log(mainMenuItems);
+  console.log(callToActionLabel);
+  console.log(callToActionDestination);
   return (
     <div>
       <MainMenu
         items={mainMenuItems}
-        callToActionLabel="TKBLOG"
-        callToActionDestination="https://tktoplog.com/main-blog"
+        callToActionLabel={callToActionLabel}
+        callToActionDestination={callToActionDestination}
       />
       <BlockRenderer blocks={blocks} />
     </div>
@@ -31,53 +42,4 @@ const Home: NextPage<Data> = ({ data, blocks, mainMenuItems }: Data) => {
 
 export default Home;
 
-export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await client.query({
-    query: gql`
-      query PageQuery {
-        nodeByUri(uri: "/") {
-          ... on Page {
-            id
-            blocksJSON
-            title
-          }
-        }
-        acfOptionsMainMenu {
-          mainMenu {
-            menuItems {
-              menuItem {
-                destination {
-                  ... on Page {
-                    id
-                    uri
-                  }
-                }
-                label
-              }
-              items {
-                destination {
-                  ... on Page {
-                    uri
-                    id
-                  }
-                }
-                label
-              }
-            }
-          }
-        }
-      }
-    `,
-  });
-
-  // awaitをつけないとエラーとなります。blocksにpromiseが返ってきます。
-  const blocks = await cleanAndTransformBlocks(data.nodeByUri.blocksJSON);
-
-  return {
-    props: {
-      data: data,
-      blocks: blocks,
-      mainMenuItems: data.acfOptionsMainMenu.mainMenu.menuItems,
-    },
-  };
-};
+export const getStaticProps: GetStaticProps = getPageStaticProps;

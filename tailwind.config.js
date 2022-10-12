@@ -9,6 +9,7 @@ module.exports = {
   ],
   theme: {
     extend: {
+      // これでfont-headingのようにすると設定があたる
       fontFamily: {
         heading: ["Aboreto", "cursive"],
         body: ["Poppins", "sans-serif"],

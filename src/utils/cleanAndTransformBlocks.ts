@@ -3,7 +3,7 @@ import { gql } from "@apollo/client";
 //uuidは重複しないIDを生成するためのもの。Universally Unique Identifierの略。
 import { v4 as uuid } from "uuid";
 
-export const cleanAndTransformBlocks = async (blocksJSON) => {
+export const cleanAndTransformBlocks = async (blocksJSON:any) => {
   console.log(blocksJSON);
   // const { data } = await client.query({
   //   query: gql`
@@ -43,8 +43,8 @@ export const cleanAndTransformBlocks = async (blocksJSON) => {
     "order",
   ];
 
-  const cleanBlocks = (b) => {
-    b.forEach((block) => {
+  const cleanBlocks = (b:any) => {
+    b.forEach((block:any) => {
       block.id = uuid();
       deleteKeys.forEach((deleteKey) => {
         delete block[deleteKey];

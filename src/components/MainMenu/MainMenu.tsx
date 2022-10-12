@@ -67,8 +67,8 @@ export const MainMenu = ({
           </div>
         ))}
         <div className="ml-3 my-auto">
-          <ButtonLink
-            destination={callToActionDestination}
+          <ButtonLink 
+            destination={`https://tktoplog.com/main-blog${callToActionDestination}`}
             label={callToActionLabel}
           />
         </div>

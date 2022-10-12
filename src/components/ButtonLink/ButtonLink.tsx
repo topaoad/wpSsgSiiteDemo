@@ -8,7 +8,7 @@ export type buttonLinkType={
 export const ButtonLink = ({ destination, label }:buttonLinkType) => {
   return (
     <Link href={destination}>
-      <a className="btn">{label}</a>
+      <a className="btn text-white bg-pink-500  text-2xl font-mono px-4 py-2 hover:bg-pink-700 rounded-lg uppercase" >{label}</a>
     </Link>
   );
 };

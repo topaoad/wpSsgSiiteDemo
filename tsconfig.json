@@ -102,7 +102,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/utils/cleanAndTransformBlocks.js", "src/components/BlockRenderer/BlockRenderer.tsx", "src/pages/[...slug].js", "src/pages/[...slug].tsx", "src/utils/relativeToAbsoluteUrls.ts", "src/utils/theme.ts"  ],
+, "src/utils/cleanAndTransformBlocks.js", "src/components/BlockRenderer/BlockRenderer.tsx", "src/pages/[...slug].js", "src/pages/[...slug].tsx", "src/utils/relativeToAbsoluteUrls.ts", "src/utils/theme.ts", "src/utils/getPageStaticProps.ts"  ],
   "exclude": [
     "node_modules"
   ]
