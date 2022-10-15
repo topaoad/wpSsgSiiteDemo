@@ -1,6 +1,6 @@
-// import { CallToActionButton } from "src/components/CallToActionButton";
-// import { Column } from "src/components/Column";
-// import { Columns } from "src/components/Columns";
+import { CallToActionButton } from "src/components/CallToActionButton";
+import { Column } from "src/components/Column";
+import { Columns } from "src/components/Columns";
 import { Cover } from "src/components/Cover";
 // import { FormspreeForm } from "src/components/FormspreeForm";
 import { Heading } from "src/components/Heading";
@@ -28,10 +28,18 @@ type BlockRendererProps = {
     originalHeight: number;
     originalWidth: number;
     alt: string;
+    isStackedOnMobile: string;
+    width: string;
+
     style: {
       textColor: {
         text: string;
       };
+    };
+    data: {
+      label: string;
+      destination: string;
+      align: string;
     };
   };
 
@@ -52,17 +60,17 @@ export const BlockRenderer = ({ blocks }: any) => {
       // case "acf/propertyfeatures": {
       //   return <PropertyFeatures key={block.id} />;
       // }
-      // case "acf/ctabutton": {
-      //   console.log("CTA: ", block);
-      //   return (
-      //     <CallToActionButton
-      //       key={block.id}
-      //       buttonLabel={block.attributes.data.label}
-      //       destination={block.attributes.data.destination || "/"}
-      //       align={block.attributes.data.align}
-      //     />
-      //   );
-      // }
+      case "acf/ctabutton": {
+        console.log("CTA: ", block);
+        return (
+          <CallToActionButton
+            key={block.id}
+            buttonLabel={block.attributes.data.label}
+            destination={block.attributes.data.destination || "/"}
+            align={block.attributes.data.align}
+          />
+        );
+      }
       case "core/paragraph": {
         return (
           <Paragraph
@@ -108,27 +116,27 @@ export const BlockRenderer = ({ blocks }: any) => {
           </Cover>
         );
       }
-      // case "core/columns": {
-      //   return (
-      //     <Columns
-      //       key={block.id}
-      //       isStackedOnMobile={block.attributes.isStackedOnMobile}
-      //     >
-      //       <BlockRenderer blocks={block.innerBlocks} />
-      //     </Columns>
-      //   );
-      // }
-      // case "core/column": {
-      //   return (
-      //     <Column key={block.id} width={block.attributes.width}>
-      //       <BlockRenderer blocks={block.innerBlocks} />
-      //     </Column>
-      //   );
-      // }
-      // case "core/group":
-      // case "core/block": {
-      //   return <BlockRenderer key={block.id} blocks={block.innerBlocks} />;
-      // }
+      case "core/columns": {
+        return (
+          <Columns
+            key={block.id}
+            isStackedOnMobile={block.attributes.isStackedOnMobile}
+          >
+            <BlockRenderer blocks={block.innerBlocks} />
+          </Columns>
+        );
+      }
+      case "core/column": {
+        return (
+          <Column key={block.id} width={block.attributes.width}>
+            <BlockRenderer blocks={block.innerBlocks} />
+          </Column>
+        );
+      }
+      case "core/group":
+      case "core/block": {
+        return <BlockRenderer key={block.id} blocks={block.innerBlocks} />;
+      }
       case "core/image": {
         return (
           <Image
@@ -136,12 +144,12 @@ export const BlockRenderer = ({ blocks }: any) => {
             src={block.attributes.url}
             height={block.attributes.originalHeight}
             width={block.attributes.originalWidth}
-            alt={block.attributes.alt || ""}
+            alt={block.attributes.alt ? block.attributes.alt : ""}
           />
         );
       }
       case "core/spacer": {
-        return <div key={block.id}>スペーサーのテストだよ</div>;
+        return <div key={block.id}>スペーサーブロックです</div>;
       }
       default: {
         console.log("UNKNOWN: ", block);

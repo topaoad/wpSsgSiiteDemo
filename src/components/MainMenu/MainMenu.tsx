@@ -57,7 +57,7 @@ export const MainMenu = ({
                     key={subMenuItem.destination.id}
                     href={`https://tktoplog.com/main-blog${subMenuItem.destination.uri}`}
                   >
-                    <a className="block whitespace-nowrap p-5 hover:bg-slate-700">
+                    <a className="text-center block whitespace-nowrap p-5 hover:bg-slate-700">
                       {subMenuItem.label}
                     </a>
                   </Link>

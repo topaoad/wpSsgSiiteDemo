@@ -7,7 +7,7 @@ export const getPageStaticProps = async () => {
   const { data } = await client.query({
     query: gql`
       query PageQuery {
-        nodeByUri(uri: "/") {
+        nodeByUri(uri: "/ssg-relation-page") {
           ... on Page {
             id
             blocksJSON
