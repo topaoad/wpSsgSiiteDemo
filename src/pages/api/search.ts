@@ -1,7 +1,8 @@
 import { gql } from "@apollo/client";
-import client from "client";
+import { NextApiRequest, NextApiResponse } from "next";
+import client from "src/lib/apollo/client";
 
-const handler = async (req, res) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const filters = JSON.parse(req.body);
 
