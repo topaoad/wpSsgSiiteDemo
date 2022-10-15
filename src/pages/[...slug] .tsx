@@ -6,8 +6,6 @@ import { cleanAndTransformBlocks } from "src/utils/cleanAndTransformBlocks";
 // import { getPageStaticProps } from "src/utils/getPageStaticProps";
 // import { Page } from "src/components/Page";
 
-// export default Page;
-
 export type DynamicData = {
   blocks: [];
 };
@@ -46,8 +44,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return {
     // paths: [...data.pages.nodes, ...data.properties.nodes]
     paths: data.pages.nodes
-      // .filter((page) => page.uri !== "/")
-      .map((page:getStaticPathsProps) => ({
+      .filter((page:any) => page.uri !== "/")
+      .map((page:any) => ({
         params: {
           // substring() メソッドは string オブジェクトの開始・終了位置の間、または文字列の最後までの部分集合を返します。
           slug: page.uri.substring(1, page.uri.length - 1).split("/"),
@@ -57,7 +55,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getPageStaticProps = async () => {
+// export const getStaticProps: GetStaticProps = getPageStaticProps;
+
+export const getPageStaticProps:GetStaticProps = async () => {
   const { data } = await client.query({
     query: gql`
       query PageQuery {
