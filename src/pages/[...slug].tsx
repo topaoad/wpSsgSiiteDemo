@@ -41,16 +41,17 @@ export const getStaticPaths = async () => {
     `,
   });
 
-  // ★うまく取得できなかったので書き換えてみたが、それでもエラー
+  // 書き換え後
   const paths = data.pages.nodes
     .filter((page: { uri: string }) => page.uri !== "/")
     .map((page: { uri: string }) => {
-      const pathsCm = page.uri.substring(1, page.uri.length - 1).split("/");
-      return pathsCm;
+      // ↓これはなくてもよい。あるとむしろエラーとなる。
+      // const pathsCm = page.uri.substring(1, page.uri.length - 1).split("/");
+      return page.uri;
     });
 
   return {
-    //　★ここは解答例のとおり
+    //　★書き換え前
     // paths: data.pages.nodes
     //   .filter((page: any) => page.uri !== "/")
     //   .map((page: any) => ({
@@ -61,7 +62,8 @@ export const getStaticPaths = async () => {
     //   })),
 
     //　★静的slugと動的slugを両方書いてもどちらも反応しない。
-    paths: [{ params: { slug: "contact" } }, { params: { slug: paths } }],
+    // paths: [{ params: { slug: "contact" } }],
+    paths:[ { params: { slug: paths } }],
     fallback: "blocking",
   };
 };
