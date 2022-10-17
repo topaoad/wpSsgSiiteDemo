@@ -3,15 +3,33 @@ import type { GetStaticProps } from "next";
 import client from "src/lib/apollo/client";
 import { cleanAndTransformBlocks } from "src/utils/cleanAndTransformBlocks";
 
-export const getPageStaticProps = async () => {
+export const getPageStaticProps = async (context: any) => {
+  console.log("CONTEXT: ", context);
+  const uri = context.params?.slug ? `/${context.params.slug.join("/")}/` : "/";
+
   const { data } = await client.query({
     query: gql`
-      query PageQuery {
-        nodeByUri(uri: "/ssg-relation-page") {
+      query PageQuery($uri: String!) {
+        nodeByUri(uri: $uri) {
           ... on Page {
             id
             blocksJSON
             title
+            featuredImage {
+              node {
+                sourceUrl
+              }
+            }
+          }
+          ... on Gallery {
+            id
+            blocksJSON
+            title
+            featuredImage {
+              node {
+                sourceUrl
+              }
+            }
           }
         }
         acfOptionsMainMenu {
@@ -49,6 +67,9 @@ export const getPageStaticProps = async () => {
         }
       }
     `,
+    variables: {
+      uri,
+    },
   });
 
   // awaitをつけないとエラーとなります。blocksにpromiseが返ってきます。
@@ -58,6 +79,7 @@ export const getPageStaticProps = async () => {
     props: {
       data: data,
       blocks: blocks,
+      // featuredImage: data.nodeByUri.featuredImage.node.sourceUrl ,
       mainMenuItems: data.acfOptionsMainMenu.mainMenu.menuItems,
       callToActionLabel:
         data.acfOptionsMainMenu.mainMenu.callToActionButton.label,

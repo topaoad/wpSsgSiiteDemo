@@ -12,6 +12,7 @@ export type Data = {
   data: object;
   blocks: [];
   mainMenuItems: [];
+  // featuredImage: string;
   callToActionLabel: string;
   callToActionDestination: string;
 };
@@ -19,6 +20,7 @@ export type Data = {
 const Home: NextPage<Data> = ({
   data,
   blocks,
+  // featuredImage,
   mainMenuItems,
   callToActionLabel,
   callToActionDestination,

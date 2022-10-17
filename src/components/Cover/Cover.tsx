@@ -9,15 +9,16 @@ interface CoverProps {
   backgroundUrl: string;
 }
 
-export const Cover = ({ children,  backgroundUrl }: CoverProps) => {
+export const Cover = ({ children, backgroundUrl }: CoverProps) => {
   // const { featuredImage } = usePageContext();
 
+  // !!の二重否定は、値をbooleanとして使用できる。
   return (
     <div className="h-screen text-white bg-slate-800 relative min-h-[400px] flex justify-center items-center margin--64">
-      {(!! backgroundUrl ) && (
+      {(!!backgroundUrl) && (
         <Image
           alt="Cover"
-          src={ backgroundUrl }
+          src={backgroundUrl}
           layout="fill"
           objectFit="cover"
           className="mix-blend-hard-light"

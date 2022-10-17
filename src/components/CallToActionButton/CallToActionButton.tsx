@@ -26,7 +26,7 @@ export const CallToActionButton = ({
   // };
 
   return (
-    <div className={alignPosition}>
+    <div className={`mt-[2rem] ${alignPosition}`}>
       <ButtonLink destination={destination} label={buttonLabel} />
     </div>
   );
