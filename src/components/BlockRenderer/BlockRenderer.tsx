@@ -5,7 +5,7 @@ import { Cover } from "src/components/Cover";
 // import { FormspreeForm } from "src/components/FormspreeForm";
 import { Heading } from "src/components/Heading";
 import { Paragraph } from "src/components/Paragraph";
-// import { PostTitle } from "src/components/PostTitle";
+import { PostTitle } from "src/components/PostTitle";
 // import { PropertyFeatures } from "src/components/PropertyFeatures";
 // import { PropertySearch } from "src/components/PropertySearch";
 import Image from "next/image";
@@ -48,7 +48,7 @@ type BlockRendererProps = {
 
 export const BlockRenderer = ({ blocks }: any) => {
 
-  
+
   return blocks.map((block: BlockRendererProps) => {
     switch (block.name) {
       // case "acf/formspreeform": {
@@ -98,15 +98,15 @@ export const BlockRenderer = ({ blocks }: any) => {
           />
         );
       }
-      // case "core/post-title": {
-      //   return (
-      //     <PostTitle
-      //       key={block.id}
-      //       level={block.attributes.level}
-      //       textAlign={block.attributes.textAlign}
-      //     />
-      //   );
-      // }
+      case "core/post-title": {
+        return (
+          <PostTitle
+            key={block.id}
+            level={block.attributes.level}
+            textAlign={block.attributes.textAlign}
+          />
+        );
+      }
       // case "acf/propertysearch": {
       //   return <PropertySearch key={block.id} />;
       // }

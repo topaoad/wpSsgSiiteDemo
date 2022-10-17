@@ -9,6 +9,7 @@ import { MainMenu } from "src/components/MainMenu";
 // import { Page } from "src/components/Page";
 
 export type DynamicData = {
+  title: string;
   blocks: [];
   data: any;
   featuredImage: string;
@@ -21,27 +22,30 @@ export type getStaticPathsProps = {
   uri: string;
 };
 
+// dataは極力レンダリングしない
 export const Page: NextPage<DynamicData> = ({
+  title,
   blocks,
-  data,
+  // data,
   featuredImage,
   mainMenuItems,
   callToActionLabel,
   callToActionDestination,
 }) => {
   console.log(blocks);
+  // console.log(data);
   console.log(featuredImage);
 
   return (
-    <Layout value={featuredImage}>
+    <Layout value={{ featuredImage: featuredImage, title: title }}>
       <MainMenu
         items={mainMenuItems}
         callToActionLabel={callToActionLabel}
         callToActionDestination={callToActionDestination}
       />
       <div className="container ">
-        <div>タイトル：{data.nodeByUri.title}</div>
         <BlockRenderer blocks={blocks} />
+        <div>タイトル：{title}</div>
       </div>
     </Layout>
   );

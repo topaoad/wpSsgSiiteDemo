@@ -11,8 +11,7 @@ interface CoverProps {
 }
 
 export const Cover = ({ children, backgroundUrl }: CoverProps) => {
-  const featuredImage = usePageContext();
-  console.log(featuredImage);
+  const {featuredImage} = usePageContext();
 
   // !!の二重否定は、値をbooleanとして使用できる。
   return (
