@@ -15,6 +15,21 @@ module.exports = {
         body: ["Poppins", "sans-serif"],
       },
     },
+    container: {
+      center: true,
+    },
+    screens: {
+      sm: "640px",
+      // => @media (min-width: 640px) { ... }
+      md: "768px",
+      // => @media (min-width: 768px) { ... }
+      lg: "1000px",
+      // => @media (min-width: 1000px) { ... }
+      // xl: "1000px",
+      // => @media (min-width: 1000px) { ... }
+      mmd: { max: "767px" },
+      // => @media (max-width: 767px) { ... }
+    },
   },
   plugins: [],
 };

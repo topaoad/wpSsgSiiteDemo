@@ -1,8 +1,9 @@
-// import { usePageContext } from "context/page";
+import { usePageContext } from "src/components/Layout";
 import next from "next";
 import Image from "next/image";
 import { ReactDOM, ReactElement } from "react";
 import { ReactNode } from "react";
+import { isConditionalExpression } from "typescript";
 
 interface CoverProps {
   children: ReactNode;
@@ -10,15 +11,16 @@ interface CoverProps {
 }
 
 export const Cover = ({ children, backgroundUrl }: CoverProps) => {
-  // const { featuredImage } = usePageContext();
+  const featuredImage = usePageContext();
+  console.log(featuredImage);
 
   // !!の二重否定は、値をbooleanとして使用できる。
   return (
-    <div className="h-screen text-white bg-slate-800 relative min-h-[400px] flex justify-center items-center margin--64">
-      {(!!backgroundUrl) && (
+    <div className="h-screen text-white bg-slate-800 relative min-h-[400px] flex justify-center items-center margin--64 mainview__width">
+      {(!!backgroundUrl || !!featuredImage) && (
         <Image
           alt="Cover"
-          src={backgroundUrl}
+          src={backgroundUrl || featuredImage}
           layout="fill"
           objectFit="cover"
           className="mix-blend-hard-light"

@@ -37,7 +37,9 @@ export const MainMenu = ({
   return (
     <div className="bg-slate-800 text-white px-5 h-[64px] sticky top-0 z-20 flex ">
       <div className="py-4 pl-5 flex text-pink-600  text-3xl font-mono">
-       とっぷのサブサイト
+        <Link href="/">
+          <a className=" "> とっぷのサブサイト</a>
+        </Link>
       </div>
       <div className="flex flex-1 justify-end">
         {(items || []).map((item: mainMenuItemType) => (
@@ -47,7 +49,7 @@ export const MainMenu = ({
           >
             <div>
               <Link href={item.menuItem.destination.uri}>
-                <a className="p-5 block">{item.menuItem.label} </a>
+                <a className="p-2 lg:p-5 block">{item.menuItem.label} </a>
               </Link>
             </div>
             {item.items?.length && (
@@ -67,7 +69,7 @@ export const MainMenu = ({
           </div>
         ))}
         <div className="ml-3 my-auto">
-          <ButtonLink 
+          <ButtonLink
             destination={`https://tktoplog.com/main-blog${callToActionDestination}`}
             label={callToActionLabel}
           />

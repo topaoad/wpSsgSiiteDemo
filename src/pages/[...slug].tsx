@@ -4,26 +4,46 @@ import { BlockRenderer } from "src/components/BlockRenderer";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { cleanAndTransformBlocks } from "src/utils/cleanAndTransformBlocks";
 import { getPageStaticProps } from "src/utils/getPageStaticProps";
+import { Layout } from "src/components/Layout";
+import { MainMenu } from "src/components/MainMenu";
 // import { Page } from "src/components/Page";
 
 export type DynamicData = {
   blocks: [];
   data: any;
-  // featuredImage: string;
+  featuredImage: string;
+  mainMenuItems: [];
+  callToActionLabel: string;
+  callToActionDestination: string;
 };
 
 export type getStaticPathsProps = {
   uri: string;
 };
 
-export const Page: NextPage<DynamicData> = ({ blocks, data }) => {
+export const Page: NextPage<DynamicData> = ({
+  blocks,
+  data,
+  featuredImage,
+  mainMenuItems,
+  callToActionLabel,
+  callToActionDestination,
+}) => {
   console.log(blocks);
+  console.log(featuredImage);
+
   return (
-    <div>
-    <div>タイトル：{data.nodeByUri.title}
-    </div>
-      <BlockRenderer blocks={blocks} />
-    </div>
+    <Layout value={featuredImage}>
+      <MainMenu
+        items={mainMenuItems}
+        callToActionLabel={callToActionLabel}
+        callToActionDestination={callToActionDestination}
+      />
+      <div className="container ">
+        <div>タイトル：{data.nodeByUri.title}</div>
+        <BlockRenderer blocks={blocks} />
+      </div>
+    </Layout>
   );
 };
 

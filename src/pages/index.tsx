@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 import type { GetStaticProps, NextPage } from "next";
-import { ReactElement } from "react";
+import { ReactElement, useContext } from "react";
 import { MainMenu } from "src/components/MainMenu";
 import client from "src/lib/apollo/client";
 import { AnyAaaaRecord } from "dns";
@@ -12,7 +12,7 @@ export type Data = {
   data: object;
   blocks: [];
   mainMenuItems: [];
-  // featuredImage: string;
+  featuredImage: string;
   callToActionLabel: string;
   callToActionDestination: string;
 };
@@ -20,7 +20,7 @@ export type Data = {
 const Home: NextPage<Data> = ({
   data,
   blocks,
-  // featuredImage,
+  featuredImage,
   mainMenuItems,
   callToActionLabel,
   callToActionDestination,
@@ -30,6 +30,7 @@ const Home: NextPage<Data> = ({
   console.log(mainMenuItems);
   console.log(callToActionLabel);
   console.log(callToActionDestination);
+
   return (
     <div>
       <MainMenu
@@ -37,7 +38,9 @@ const Home: NextPage<Data> = ({
         callToActionLabel={callToActionLabel}
         callToActionDestination={callToActionDestination}
       />
-      <BlockRenderer blocks={blocks} />
+      <div className="container ">
+        <BlockRenderer blocks={blocks} />
+      </div>
     </div>
   );
 };
