@@ -7,7 +7,7 @@ import { Heading } from "src/components/Heading";
 import { Paragraph } from "src/components/Paragraph";
 import { PostTitle } from "src/components/PostTitle";
 // import { PropertyFeatures } from "src/components/PropertyFeatures";
-// import { PropertySearch } from "src/components/PropertySearch";
+import { PropertySearch } from "src/components/PropertySearch";
 import Image from "next/image";
 import { theme } from "src/utils/theme";
 
@@ -107,9 +107,9 @@ export const BlockRenderer = ({ blocks }: any) => {
           />
         );
       }
-      // case "acf/propertysearch": {
-      //   return <PropertySearch key={block.id} />;
-      // }
+      case "acf/propertysearch": {
+        return <PropertySearch key={block.id} />;
+      }
       case "core/cover": {
         console.log("COVER BLOCK: ", block);
         return (

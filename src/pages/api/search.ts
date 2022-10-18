@@ -6,100 +6,92 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const filters = JSON.parse(req.body);
 
-    let hasParkingFilter = ``;
-    let petFriendlyFilter = ``;
-    let minPriceFilter = ``;
-    let maxPriceFilter = ``;
+    // let hasParkingFilter = ``;
+    // let petFriendlyFilter = ``;
+    // let minPriceFilter = ``;
+    // let maxPriceFilter = ``;
 
-    if (filters.hasParking) {
-      hasParkingFilter = `
-      {
-        key: "has_parking"
-        compare: EQUAL_TO
-        value: "1"
-      },
-      `;
-    }
+    // if (filters.hasParking) {
+    //   hasParkingFilter = `
+    //   {
+    //     key: "has_parking"
+    //     compare: EQUAL_TO
+    //     value: "1"
+    //   },
+    //   `;
+    // }
 
-    if (filters.petFriendly) {
-      hasParkingFilter = `
-      {
-        key: "pet_friendly"
-        compare: EQUAL_TO
-        value: "1"
-      },
-      `;
-    }
+    // if (filters.petFriendly) {
+    //   hasParkingFilter = `
+    //   {
+    //     key: "pet_friendly"
+    //     compare: EQUAL_TO
+    //     value: "1"
+    //   },
+    //   `;
+    // }
 
-    if (filters.minPrice) {
-      minPriceFilter = `
-      {
-        key: "price"
-        compare: GREATER_THAN_OR_EQUAL_TO
-        value: "${filters.minPrice}"
-        type: NUMERIC
-      }
-      `;
-    }
-    if (filters.maxPrice) {
-      maxPriceFilter = `
-      {
-        key: "price"
-        compare: LESS_THAN_OR_EQUAL_TO
-        value: "${filters.maxPrice}"
-        type: NUMERIC
-      }
-      `;
-    }
+    // if (filters.minPrice) {
+    //   minPriceFilter = `
+    //   {
+    //     key: "price"
+    //     compare: GREATER_THAN_OR_EQUAL_TO
+    //     value: "${filters.minPrice}"
+    //     type: NUMERIC
+    //   }
+    //   `;
+    // }
+    // if (filters.maxPrice) {
+    //   maxPriceFilter = `
+    //   {
+    //     key: "price"
+    //     compare: LESS_THAN_OR_EQUAL_TO
+    //     value: "${filters.maxPrice}"
+    //     type: NUMERIC
+    //   }
+    //   `;
+    // }
 
     const { data } = await client.query({
       query: gql`
-        query AllPropertiesQuery {
-          properties(where: { 
-            offsetPagination: { size: 3, offset: ${
-              ((filters.page || 1) - 1) * 3
-            } }
-          metaQuery: {
-            relation: AND
-            metaArray: [
-              ${petFriendlyFilter}
-              ${hasParkingFilter}
-              ${minPriceFilter}
-              ${maxPriceFilter}
-            ]
-          }
-        }) {
-            pageInfo {
-              offsetPagination {
-                total
-              }
-            }
+        query GalleryInGalleries {
+          galleries {
             nodes {
-              databaseId
-              title
               uri
+              slug
+              title
               featuredImage {
                 node {
-                  uri
                   sourceUrl
                 }
               }
-              propertyFeatures {
+              galleryProperty {
                 bathrooms
                 bedrooms
-                hasParking
-                petFriendly
+                gardens
+                parkings
                 price
               }
+              ... on Gallery {
+                id
+                blocksJSON
+                title
+                featuredImage {
+                  node {
+                    sourceUrl
+                  }
+                }
+              }
+              galleryId
             }
           }
         }
       `,
     });
-    console.log("SERVER SIDE: ", data.properties.nodes);
+    // console.log("SERVER SIDE: ",  data.galleries.nodes);
     return res.status(200).json({
-      total: data.properties.pageInfo.offsetPagination.total,
-      properties: data.properties.nodes,
+      // total: data.properties.pageInfo.offsetPagination.total,
+      galleries: data.galleries.nodes,
     });
   } catch (e) {
     console.log("ERROR: ", e);
@@ -107,3 +99,5 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 };
 
 export default handler;
+
+
