@@ -4,7 +4,8 @@ import client from "src/lib/apollo/client";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const filters = JSON.parse(req.body);
+    // parseの際に空文字があるとシンタックスエラーを返すらしいので、 "null"を付与
+    const filters = JSON.parse(req.body|| "null");
 
     // let hasParkingFilter = ``;
     // let petFriendlyFilter = ``;
@@ -82,15 +83,15 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
                   }
                 }
               }
-              galleryId
+          
             }
           }
         }
       `,
     });
-    // console.log("SERVER SIDE: ",  data.galleries.nodes);
+    console.log("SERVER SIDE: ",  data.galleries.nodes);
     return res.status(200).json({
-      // total: data.properties.pageInfo.offsetPagination.total,
+      // total: data.galleries.pageInfo.offsetPagination.total,
       galleries: data.galleries.nodes,
     });
   } catch (e) {

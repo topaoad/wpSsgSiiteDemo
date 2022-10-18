@@ -16,6 +16,14 @@
 具体例
 -  Apolloではなく、graphql-requestライブラリのGraphQLClientを使ったデータフェッチ
 
-## メモ
+## メモ(主に課題)
 - ACFブロックはマイスノモン内に入れたいが動かないのでやむを得ずスノモン内直下に作成。苦渋の判断
 - ACFはショートコードをつかって入れたいが、そこまでできていない
+- getPageStaticProps内のjoinを型定義したいが難しそうなので未実施
+
+## 記事に残したい件
+- keyof typeofの理解
+- Utility Typesの使い道
+- .maintenanceの削除
+- ... on 型の使い道
+- 

@@ -1,17 +1,23 @@
-import { createContext, useContext } from "react";
+import { createContext, ReactNode, useContext } from "react";
 import { getPageStaticProps } from "src/utils/getPageStaticProps";
 import type { GetStaticProps, NextPage } from "next";
+import { DynamicData } from "src/pages/[...slug]";
 
 type PageContextType = {
   title: string;
   featuredImage: string;
 };
 
-const PageContext = createContext({title:"",featuredImage:""});
+type LayoutProps = {
+  value: { featuredImage: string; title: string };
+  children: ReactNode;
+};
+
+const PageContext = createContext({ title: "", featuredImage: "" });
 
 // Layoutに格納されたvalueをPageContextを通じてuseConetextに渡す。
 // 使うページ側の可読性を挙げるためにLayoutにまとめています。
-export const Layout = ({ value, children }: any) => {
+export const Layout = ({ value, children }: LayoutProps) => {
   return <PageContext.Provider value={value}>{children}</PageContext.Provider>;
 };
 
