@@ -29,6 +29,8 @@ module.exports = {
       // => @media (min-width: 1000px) { ... }
       mmd: { max: "767px" },
       // => @media (max-width: 767px) { ... }
+      mlg: { max: "1000px" },
+      // => @media (max-width: 1000px) { ... }
     },
   },
   plugins: [],

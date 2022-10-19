@@ -45,7 +45,8 @@ export const MainMenu = ({
         {(items || []).map((item: mainMenuItemType) => (
           <div
             key={item.menuItem.destination.id}
-            className="hover:bg-slate-700 cursor-pointer relative group"
+            // className=" mmd:flex mmd:items-center mt-30 hover:bg-slate-700 cursor-pointer relative group "
+            className="mlg:flex mlg:items-center relative group"
           >
             <div>
               <Link href={item.menuItem.destination.uri}>
