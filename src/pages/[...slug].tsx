@@ -6,8 +6,16 @@ import { cleanAndTransformBlocks } from "src/utils/cleanAndTransformBlocks";
 import { getPageStaticProps } from "src/utils/getPageStaticProps";
 import { Layout } from "src/components/Layout";
 import { MainMenu } from "src/components/MainMenu";
-import { Data } from ".";
 // import { Page } from "src/components/Page";
+
+export type Data = {
+  data: object;
+  blocks: [];
+  mainMenuItems:[];
+  featuredImage: string;
+  callToActionLabel: string;
+  callToActionDestination: string;
+};
 
 // 型拡張
 export type DynamicData = Data & {
