@@ -9,16 +9,27 @@ import Image from "next/image";
 import Link from "next/link";
 import numeral from "numeral";
 
+type PropertyCardProps = {
+  title: string;
+  destination: string;
+  image: string;
+  bathrooms: number;
+  bedrooms: number;
+  gardens:  boolean;
+  parkings:  boolean;
+  price: number;
+};
+
 export const PropertyCard = ({
   title,
   destination,
   image,
-  bedrooms,
   bathrooms,
+  bedrooms,
+  gardens,
+  parkings,
   price,
-  hasParking,
-  petFriendly,
-}) => {
+}: PropertyCardProps) => {
   return (
     <Link href={destination}>
       <a className="border-2 border-slate-300 p-5 block bg-slate-100 hover:bg-slate-200">
@@ -43,25 +54,26 @@ export const PropertyCard = ({
             <span className="pl-2">{bedrooms} bedrooms</span>
           </div>
         </div>
-        {(!!hasParking || !!petFriendly) && (
-          <div className="flex justify-between text-sm mt-3">
-            <div>
-              {!!hasParking && (
-                <>
-                  <FontAwesomeIcon icon={faCar} /> parking available
-                </>
-              )}
-            </div>
-            <div>
-              {!!petFriendly && (
-                <>
-                  <FontAwesomeIcon icon={faDog} /> pet friendly
-                </>
-              )}
-            </div>
-          </div>
-        )}
       </a>
     </Link>
   );
 };
+
+// {(!!hasParking || !!petFriendly) && (
+//   <div className="flex justify-between text-sm mt-3">
+//     <div>
+//       {!!hasParking && (
+//         <>
+//           <FontAwesomeIcon icon={faCar} /> parking available
+//         </>
+//       )}
+//     </div>
+//     <div>
+//       {!!petFriendly && (
+//         <>
+//           <FontAwesomeIcon icon={faDog} /> pet friendly
+//         </>
+//       )}
+//     </div>
+//   </div>
+// )}

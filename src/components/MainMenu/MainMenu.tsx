@@ -35,7 +35,7 @@ export const MainMenu = ({
 }: mainMenuType) => {
   console.log("MAIN MENU: ", items);
   return (
-    <div className="bg-slate-800 text-white px-5 h-[64px] sticky top-0 z-20 flex ">
+    <div className="animate-tracking-in-expand-fwd bg-slate-800 text-white px-5 h-[64px] sticky top-0 z-20 flex ">
       <div className="py-4 pl-5 flex text-pink-600  text-3xl font-mono">
         <Link href="/">
           <a className=" "> とっぷのサブサイト</a>

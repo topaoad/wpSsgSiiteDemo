@@ -1,8 +1,8 @@
-import { Input } from "components/Input";
+import { Input } from "src/components/Input";
 import { useEffect, useState } from "react";
 import queryString from "query-string";
 
-export const Filters = ({ onSearch }) => {
+export const Filters = ({ onSearch }:any) => {
   const [petFriendly, setPetFriendly] = useState(false);
   const [hasParking, setHasParking] = useState(false);
   const [minPrice, setMinPrice] = useState("");
@@ -27,8 +27,8 @@ export const Filters = ({ onSearch }) => {
 
     setPetFriendly(petFriendlyInitial === "true");
     setHasParking(hasParkingInitial === "true");
-    setMinPrice(minPriceInitial || "");
-    setMaxPrice(maxPriceInitial || "");
+    // setMinPrice(minPriceInitial || "");
+    // setMaxPrice(maxPriceInitial || "");
   }, []);
 
   return (
@@ -60,7 +60,7 @@ export const Filters = ({ onSearch }) => {
         <Input
           type="number"
           value={minPrice}
-          onChange={(e) => setMinPrice(e.target.value)}
+          onChange={(e:any) => setMinPrice(e.target.value)}
         />
       </div>
       <div className="flex-1">
@@ -68,7 +68,7 @@ export const Filters = ({ onSearch }) => {
         <Input
           type="number"
           value={maxPrice}
-          onChange={(e) => setMaxPrice(e.target.value)}
+          onChange={(e:any) => setMaxPrice(e.target.value)}
         />
       </div>
       <div>

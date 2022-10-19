@@ -10,7 +10,7 @@ import { Data } from ".";
 // import { Page } from "src/components/Page";
 
 // 型拡張
-export type DynamicData =Data& {
+export type DynamicData = Data & {
   title: string;
 };
 
@@ -41,7 +41,6 @@ export const Page: NextPage<DynamicData> = ({
       />
       <div className="container ">
         <BlockRenderer blocks={blocks} />
-        <div>タイトル：{title}</div>
       </div>
     </Layout>
   );

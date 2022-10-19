@@ -1,19 +1,17 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 // import { Pagination } from "./Pagination";
-// import { Results } from "./Results";
+import { Results } from "./Results";
 import queryString from "query-string";
 // import { Filters } from "./Filters";
 
 export const PropertySearch = () => {
-  const [properties, setProperties] = useState([]);
+  const [galleries, setGalleries] = useState([]);
   const [totalResults, setTotalResults] = useState(0);
   const pageSize = 3;
   const router = useRouter();
 
- 
-
-   useEffect(() => {
+  useEffect(() => {
     const search = async () => {
       //   const { page, minPrice, maxPrice, hasParking, petFriendly } =
       //     queryString.parse(window.location.search);
@@ -30,26 +28,26 @@ export const PropertySearch = () => {
       //   if (petFriendly === "true") {
       //     filters.petFriendly = true;
       //   }
-    
-        const response = await fetch(`/api/search`);
-        // , {
+
+      const response = await fetch(`/api/search`);
+      // , {
       //     method: "POST",
       //     body: JSON.stringify({
       //       page: parseInt(page || "1"),
       //       ...filters,
       //     }),
       //   });
-        const data = await response.json();
-        console.log("SEARCH DATA: ", data);
-      //   setProperties(data.properties);
+      const data = await response.json();
+      console.log("SEARCH DATA: ", data);
+      setGalleries(data.galleries);
       //   setTotalResults(data.total);
       // };
-    
+
       // const handlePageClick = async (pageNumber) => {
       //   const { petFriendly, hasParking, minPrice, maxPrice } = queryString.parse(
       //     window.location.search
       //   );
-    
+
       //   await router.push(
       //     `${router.query.slug.join("/")}?page=${pageNumber}&petFriendly=${
       //       petFriendly === "true"
@@ -61,9 +59,9 @@ export const PropertySearch = () => {
       //       shallow: true,
       //     }
       //   );
-        // search();
-      };
-     search();
+      // search();
+    };
+    search();
   }, []);
 
   // const handleSearch = async ({
@@ -87,12 +85,17 @@ export const PropertySearch = () => {
   //   search();
   // };
 
-  return <div>hello</div>;
+  return (
+    <div>
+      <div className="mt-3 text-lg font-bold animate-tracking-in-expand-fwd">検索情報をこちらです</div>
+      <Results galleries={galleries} />
+    </div>
+  );
 };
 
 // return文の中
 // <Filters onSearch={handleSearch} />
-// <Results properties={properties} />
+// <Results galleries={galleries} /> OK
 // <Pagination
 //   onPageClick={handlePageClick}
 //   totalPages={Math.ceil(totalResults / pageSize)}

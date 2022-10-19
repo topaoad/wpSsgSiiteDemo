@@ -79,8 +79,8 @@ export const getPageStaticProps = async (context: any) => {
     props: {
       data: data,
       blocks: blocks,
-      title: data.nodeByUri.title ,
-      featuredImage: data.nodeByUri.featuredImage.node.sourceUrl ,
+      title: data.nodeByUri.title,
+      featuredImage: data.nodeByUri.featuredImage?.node?.sourceUrl || null,
       mainMenuItems: data.acfOptionsMainMenu.mainMenu.menuItems,
       callToActionLabel:
         data.acfOptionsMainMenu.mainMenu.callToActionButton.label,

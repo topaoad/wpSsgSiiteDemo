@@ -49,7 +49,7 @@ type BlockRendererProps = {
 export const BlockRenderer = ({ blocks }: any) => {
 
 
-  return blocks.map((block: BlockRendererProps) => {
+  return blocks?.map((block: BlockRendererProps) => {
     switch (block.name) {
       // case "acf/formspreeform": {
       //   return (

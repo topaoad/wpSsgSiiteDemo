@@ -15,7 +15,7 @@ export const Cover = ({ children, backgroundUrl }: CoverProps) => {
 
   // !!の二重否定は、値をbooleanとして使用できる。
   return (
-    <div className="h-screen text-white bg-slate-800 relative min-h-[400px] flex justify-center items-center margin--64 mainview__width">
+    <div className="animate-scale-in-center  h-screen text-white bg-slate-800 relative min-h-[400px] flex justify-center items-center margin--64 mainview__width">
       {(!!backgroundUrl || !!featuredImage) && (
         <Image
           alt="Cover"

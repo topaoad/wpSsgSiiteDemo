@@ -32,6 +32,38 @@ module.exports = {
       mlg: { max: "1000px" },
       // => @media (max-width: 1000px) { ... }
     },
+    animation: {
+      "scale-in-center":
+        "scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940)   both",
+      "tracking-in-expand-fwd":
+        "tracking-in-expand-fwd 3s cubic-bezier(0.215, 0.610, 0.355, 1.000)   both",
+    },
+    keyframes: {
+      "scale-in-center": {
+        "0%": {
+          transform: "scale(0)",
+          opacity: "1",
+        },
+        to: {
+          transform: "scale(1)",
+          opacity: "1",
+        },
+      },
+      "tracking-in-expand-fwd": {
+        "0%": {
+          "letter-spacing": "-.5em",
+          transform: "translateZ(-700px)",
+          opacity: "0",
+        },
+        "40%": {
+          opacity: ".6",
+        },
+        to: {
+          transform: "translateZ(0)",
+          opacity: "1",
+        },
+      },
+    },
   },
   plugins: [],
 };

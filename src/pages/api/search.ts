@@ -58,6 +58,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         query GalleryInGalleries {
           galleries {
             nodes {
+              databaseId
               uri
               slug
               title
