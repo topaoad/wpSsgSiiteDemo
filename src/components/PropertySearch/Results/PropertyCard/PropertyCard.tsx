@@ -33,7 +33,7 @@ export const PropertyCard = ({
   return (
     <Link href={destination}>
       <a className="border-2 border-slate-300 p-5 block bg-slate-100 hover:bg-slate-200">
-        <div className="flex w-full">
+        <div className="flex w-full relative">
           <Image
             src={image}
             height="200px"
@@ -41,6 +41,7 @@ export const PropertyCard = ({
             objectFit="cover"
             alt=""
           />
+          <div className="post-img-frame"></div>
         </div>
         <div className="mt-3 text-lg font-bold">{title}</div>
         <div className="text-lg">£{numeral(price).format("0,0")}</div>

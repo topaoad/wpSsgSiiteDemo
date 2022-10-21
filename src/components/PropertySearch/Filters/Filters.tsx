@@ -39,6 +39,7 @@ export const Filters = ({ onSearch }:any) => {
             <input
               type="checkbox"
               checked={hasParking}
+              // 否定演算子。setHasParking(!value)でよいと思う。
               onChange={() => setHasParking((value) => !value)}
             />
             <span className="pl-2">has parking</span>

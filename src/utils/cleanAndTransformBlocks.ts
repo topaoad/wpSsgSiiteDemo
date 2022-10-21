@@ -80,7 +80,7 @@ export const cleanAndTransformBlocks = async <T>(blocksJSON:T extends string?str
     });
   };
 
-   cleanBlocks(blocks);
+   cleanBlocks<object>(blocks);
 
   return blocks;
 };

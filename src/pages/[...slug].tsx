@@ -11,11 +11,12 @@ import { MainMenu } from "src/components/MainMenu";
 export type Data = {
   data: object;
   blocks: [];
-  mainMenuItems:[];
+  mainMenuItems: [];
   featuredImage: string;
   callToActionLabel: string;
   callToActionDestination: string;
 };
+
 
 // 型拡張
 export type DynamicData = Data & {
