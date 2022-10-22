@@ -9,6 +9,12 @@ import search from "src/pages/api/search";
 type filtersProps = {
   minPrice: number;
 };
+type handleSearchProps = {
+  hasGardens: boolean;
+  hasParking: boolean;
+  minPrice: number;
+  maxPrice: number;
+};
 
 export const PropertySearch = () => {
   const [galleries, setGalleries] = useState([]);
@@ -73,8 +79,10 @@ export const PropertySearch = () => {
     );
 
     await router.push(
-      `${router.query.slug?.join("/")}?page=${pageNumber}`,
-      undefined,
+      `${router.query.slug?.join(
+        "/"
+      )}??page=1&hasGardens=${!!hasGardens}&hasParking=${!!hasParking}&minPrice=${minPrice}&maxPrice=${maxPrice}`,
+      null,
       {
         shallow: true,
       }
@@ -82,37 +90,38 @@ export const PropertySearch = () => {
     search();
   };
 
+  // まずここでsearch関数を実行する
   useEffect(() => {
     search();
   }, []);
 
-  // const handleSearch = async ({
-  //   hasGardens,
-  //   hasParking,
-  //   minPrice,
-  //   maxPrice,
-  // }) => {
-  //   // update our browser url
-  //   // search
-  //   console.log("FILTERS: ", hasGardens, hasParking, minPrice, maxPrice);
-  //   await router.push(
-  //     `${router.query.slug.join(
-  //       "/"
-  //     )}?page=1&hasGardens=${!!hasGardens}&hasParking=${!!hasParking}&minPrice=${minPrice}&maxPrice=${maxPrice}`,
-  //     null,
-  //     {
-  //       shallow: true,
-  //     }
-  //   );
-  //   search();
-  // };
+  const handleSearch = async ({
+    hasGardens,
+    hasParking,
+    minPrice,
+    maxPrice,
+  }: handleSearchProps) => {
+    // update our browser url
+    // search
+    console.log("FILTERS: ", hasGardens, hasParking, minPrice, maxPrice);
+    await router.push(
+      `${router.query.slug.join(
+        "/"
+      )}?page=1&hasGardens=${!!hasGardens}&hasParking=${!!hasParking}&minPrice=${minPrice}&maxPrice=${maxPrice}`,
+      null,
+      {
+        shallow: true,
+      }
+    );
+    search();
+  };
 
   return (
     <div>
       <div className="mt-3 text-lg font-bold animate-tracking-in-expand-fwd">
         検索情報一覧はこちらです
       </div>
-
+      <Filters onSearch={handleSearch} />
       <Results galleries={galleries} />
       <Pagination
         onPageClick={handlePageClick}
@@ -121,10 +130,3 @@ export const PropertySearch = () => {
     </div>
   );
 };
-// <Filters onSearch={"handleSearch"} />
-
-// &hasGardens=${
-//   hasGardens === "true"
-// }&hasParking=${
-//   hasParking === "true"
-// }&minPrice=${minPrice}&maxPrice=${maxPrice}
