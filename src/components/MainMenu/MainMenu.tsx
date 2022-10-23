@@ -58,7 +58,7 @@ export const MainMenu = ({
                 {item.items.map((subMenuItem: subMenuItemType) => (
                   <Link
                     key={subMenuItem.destination.id}
-                    href={`https://tktoplog.com/main-blog${subMenuItem.destination.uri}`}
+                    href={subMenuItem.destination.uri}
                   >
                     <a className="text-center block whitespace-nowrap p-5 hover:bg-slate-700">
                       {subMenuItem.label}

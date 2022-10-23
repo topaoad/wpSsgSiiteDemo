@@ -50,6 +50,10 @@ export const getPageStaticProps = async (context: any) => {
                     id
                     uri
                   }
+                  ... on Gallery {
+                    id
+                    uri
+                  }
                 }
                 label
               }

@@ -8,7 +8,7 @@ export const Filters = ({ onSearch }: any) => {
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
 
-  // onSearchでわたってくるPropertySearch側のhandleSearch関数に入力値を渡してやる
+  // onSearchでわたってくるPropertySearch側のhandleSearch関数に入力値を渡し,実行する
   const handleSearch = () => {
     onSearch({
       hasGardens,

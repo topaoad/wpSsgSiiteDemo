@@ -82,7 +82,7 @@ export const PropertySearch = () => {
       `${router.query.slug?.join(
         "/"
       )}??page=1&hasGardens=${!!hasGardens}&hasParking=${!!hasParking}&minPrice=${minPrice}&maxPrice=${maxPrice}`,
-      null,
+      undefined,
       {
         shallow: true,
       }
@@ -108,7 +108,7 @@ export const PropertySearch = () => {
       `${router.query.slug.join(
         "/"
       )}?page=1&hasGardens=${!!hasGardens}&hasParking=${!!hasParking}&minPrice=${minPrice}&maxPrice=${maxPrice}`,
-      null,
+      undefined,
       {
         shallow: true,
       }
